@@ -76,11 +76,11 @@ export function calcDateOnDiet(
 
   const coefficients = harrisBenedictCoefficients[sex];
 
-  const dailyCaloriesBasicMetabolicRate = Math.ceil(
-    coefficients.base +
-      coefficients.weightFactor * currentWeightKg +
-      coefficients.heightFactor * heightM * METERS_TO_CM_FACTOR -
-      coefficients.ageFactor * ageY
+  const dailyCaloriesBasicMetabolicRate = calculateBMR(
+    currentWeightKg,
+    heightM,
+    ageY,
+    sex
   );
 
   const dailyExcessCalories =
@@ -95,4 +95,21 @@ export function calcDateOnDiet(
   );
 
   return estimatedDays;
+}
+
+function calculateBMR(
+  currentWeightKg: number,
+  heightM: number,
+  ageY: number,
+  sex: Sex
+): number {
+  const coefficients = harrisBenedictCoefficients[sex];
+
+  const bmr =
+    coefficients.base +
+    coefficients.weightFactor * currentWeightKg +
+    coefficients.heightFactor * (heightM * METERS_TO_CM_FACTOR) -
+    coefficients.ageFactor * ageY;
+
+  return Math.ceil(bmr);
 }
