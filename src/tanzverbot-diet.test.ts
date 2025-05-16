@@ -31,11 +31,11 @@ describe('calcDateOnDiet', () => {
     }).toThrow('You do not qualify for this kind of diet.');
   });
 
-it('should NOT throw error if diet is extremely high in calories', () => {
-  expect(() => {
-    calcDateOnDiet(30, 35, 2.5, 18, Sex.Male);
-  }).not.toThrow();
-});
+  it('should NOT throw error if diet is extremely high in calories', () => {
+    expect(() => {
+      calcDateOnDiet(30, 35, 2.5, 18, Sex.Male);
+    }).not.toThrow();
+  });
 
   it('should work correctly with exact boundary values (age = 16, height = 1.5)', () => {
     const days = calcDateOnDiet(45, 48, 1.5, 16, Sex.Female);
