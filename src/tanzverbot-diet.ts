@@ -74,8 +74,6 @@ export function calcDateOnDiet(
     dailyCaloriesOnDiet += calories * servings;
   }
 
-  const coefficients = harrisBenedictCoefficients[sex];
-
   const dailyCaloriesBasicMetabolicRate = calculateBMR(
     currentWeightKg,
     heightM,
